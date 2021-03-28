@@ -49,7 +49,6 @@ export class GpioFan implements AccessoryPlugin {
 
     this.sendCommand = (command: 'low' | 'medium' | 'high' | 'off', callback: () => void): void => {
       if (this.pendingCallback) {
-        clearTimeout(this.pendingCallback);
         // If we were already sending a command, reset all pins first
         this.id1Pin.write(0);
         this.id2Pin.write(0);
