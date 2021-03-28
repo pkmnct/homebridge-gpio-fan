@@ -47,7 +47,7 @@ export class GpioFan implements AccessoryPlugin {
     this.mediumPin = new Gpio(16, 'out');
     this.highPin = new Gpio(17, 'out');
 
-    this.sendCommand = (command: 'low' | 'medium' | 'high' | 'off', callback: () => void) => {
+    this.sendCommand = (command: 'low' | 'medium' | 'high' | 'off', callback: () => void): void => {
       if (this.pendingCallback) {
         clearTimeout(this.pendingCallback);
         // If we were already sending a command, reset all pins first
@@ -129,14 +129,14 @@ export class GpioFan implements AccessoryPlugin {
    * This must return an array of the services to expose.
    * This method must be named "getServices".
    */
-  getServices() {
+  getServices(): Service[] {
     return [
       this.informationService,
       this.fanService,
     ];
   }
 
-  getOnHandler(callback: CharacteristicGetCallback) {
+  getOnHandler(callback: CharacteristicGetCallback): void {
     this.log.info('Getting switch state: ' + this.on);
 
     // the first argument of the callback should be null if there are no errors
@@ -145,10 +145,10 @@ export class GpioFan implements AccessoryPlugin {
 
   }
 
-  setOnHandler(value: CharacteristicValue, callback: CharacteristicSetCallback) {
+  setOnHandler(value: CharacteristicValue, callback: CharacteristicSetCallback): void {
     this.log.info('Setting switch state to:', value);
 
-    const handleCallback = () => callback(null);
+    const handleCallback = (): void => callback(null);
 
     if (value) {
       this.on = true;
@@ -165,7 +165,7 @@ export class GpioFan implements AccessoryPlugin {
   }
 
 
-  getRotationSpeed(callback: CharacteristicGetCallback) {
+  getRotationSpeed(callback: CharacteristicGetCallback): void {
     this.log.info('Getting rotation state');
 
     // the first argument of the callback should be null if there are no errors
@@ -174,10 +174,10 @@ export class GpioFan implements AccessoryPlugin {
 
   }
 
-  setRotationSpeed(value: CharacteristicValue, callback: CharacteristicSetCallback) {
+  setRotationSpeed(value: CharacteristicValue, callback: CharacteristicSetCallback): void {
     this.log.info('Setting rotationSpeed: %s', value);
 
-    const handleCallback = () => callback(null);
+    const handleCallback = (): void => callback(null);
 
     if (value > 0) {
       this.speed = value as number;
