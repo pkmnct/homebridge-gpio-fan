@@ -191,7 +191,5 @@ export class GpioFan implements AccessoryPlugin {
     } else {
       this.sendCommand('off', handleCallback);
     }
-
-    callback(null);
   }
 }
