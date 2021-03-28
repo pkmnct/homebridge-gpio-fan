@@ -1,0 +1,43 @@
+{
+  "displayName": "Homebridge GPIO Fan",
+  "name": "homebridge-gpio-fan",
+  "version": "0.1.0",
+  "description": "Control a fan via relays connected to GPIO on a rPI",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pkmnct/homebridge-gpio-fan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pkmnct/homebridge-gpio-fan/issues"
+  },
+  "engines": {
+    "node": ">=10.17.0",
+    "homebridge": ">0.4.53"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint src/**.ts",
+    "watch": "npm run build && npm link && nodemon",
+    "build": "rimraf ./dist && tsc",
+    "prepublishOnly": "npm run lint && npm run build"
+  },
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "dependencies": {
+    "@types/onoff": "^4.1.0",
+    "onoff": "^6.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.5",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "eslint": "^7.0.0",
+    "homebridge": "^1.0.4",
+    "nodemon": "^2.0.3",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
+  }
+}
