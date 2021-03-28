@@ -180,6 +180,7 @@ export class GpioFan implements AccessoryPlugin {
     const handleCallback = (): void => callback(null);
 
     if (value > 0) {
+      this.on = true;
       this.speed = value as number;
       if (value <= 33) {
         this.sendCommand('low', handleCallback);
